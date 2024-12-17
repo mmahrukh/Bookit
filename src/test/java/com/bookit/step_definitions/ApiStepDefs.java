@@ -72,4 +72,26 @@ public class ApiStepDefs {
     }
 
 
+    /**
+     *  Scenario 2
+     */
+
+    @Given("Path Param {string} is {string}")
+    public void path_param_is(String pathParamKey, String pathParamValue) {
+        givenPart.pathParam(pathParamKey,pathParamValue);
+
+    }
+    @Then("{string} field should not be null")
+    public void field_should_not_be_null(String path) {
+        String value = jp.getString(path);
+
+        Assert.assertNotNull(value);
+    }
+    @Then("the field value for {string} path should be equal {string}")
+    public void the_field_value_for_path_should_be_equal(String string, String string2) {
+
+    }
+
+
+
 }
