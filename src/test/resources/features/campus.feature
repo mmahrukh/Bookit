@@ -1,7 +1,7 @@
 Feature: As a team_leader,
   I should be able to see campuses information
 
-
+  @wip
   Scenario: verify information about logged user
     Given I logged in Bookit api as a "team_leader"
     And request accept type is "application/json"
