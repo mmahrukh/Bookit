@@ -14,7 +14,7 @@ import static io.restassured.RestAssured.given;
 
 public class BookitUtils {
 
-    public static String getToken(String email,String password){
+    public static String getToken(String email, String password) {
 
         JsonPath jp = RestAssured.given().accept(ContentType.JSON)
                 .queryParam("email", email)
@@ -27,7 +27,7 @@ public class BookitUtils {
 
         String accessToken = jp.getString("accessToken");
 
-        return "Bearer "+accessToken;
+        return "Bearer " + accessToken;
 
     }
 
@@ -38,7 +38,7 @@ public class BookitUtils {
         String email = roleCredentials.get("email");
         String password = roleCredentials.get("password");
 
-        return  getToken(email,password);
+        return getToken(email, password);
 
     }
 
@@ -48,17 +48,23 @@ public class BookitUtils {
 
         switch (role) {
             case "teacher":
-                email = ConfigurationReader.getProperty("teacher_email") ;
-                password = ConfigurationReader.getProperty("teacher_password") ;
+                // email = ConfigurationReader.getProperty("teacher_email") ;
+                // password = ConfigurationReader.getProperty("teacher_password") ;
+                email = System.getenv("TEACHER_EMAIL");
+                password = System.getenv("TEACHER_PASSWORD");
                 break;
 
             case "team_member":
-                email = ConfigurationReader.getProperty("team_member_email") ;
-                password = ConfigurationReader.getProperty("team_member_password");
+                //email = ConfigurationReader.getProperty("team_member_email") ;
+                //password = ConfigurationReader.getProperty("team_member_password");
+                email = System.getenv("TEAM_MEMBER_EMAIL");
+                password = System.getenv("TEAM_MEMBER_PASSWORD");
                 break;
             case "team_leader":
-                email = ConfigurationReader.getProperty("team_leader_email") ;
-                password = ConfigurationReader.getProperty("team_leader_password") ;
+                //email = ConfigurationReader.getProperty("team_leader_email") ;
+                //password = ConfigurationReader.getProperty("team_leader_password") ;
+                email = System.getenv("TEAM_LEADER_EMAIL");
+                password = System.getenv("TEAM_LEADER_PASSWORD");
                 break;
 
             default:
@@ -79,7 +85,7 @@ public class BookitUtils {
         Map<String, Object> userMap = new LinkedHashMap<>();
         String firstName = faker.name().firstName();
         String lastName = faker.name().lastName();
-        String email = firstName+"."+lastName +faker.number().numberBetween(1,100) +"@cydeo.com";
+        String email = firstName + "." + lastName + faker.number().numberBetween(1, 100) + "@cydeo.com";
         System.out.println(email);
         userMap.put("first-name", firstName);
         userMap.put("last-name", lastName);

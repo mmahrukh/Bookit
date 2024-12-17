@@ -9,10 +9,11 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
-import org.hamcrest.Matchers;
 import org.junit.Assert;
 
 import java.util.List;
+
+import static org.hamcrest.Matchers.*;
 
 public class ApiStepDefs {
 
@@ -66,7 +67,7 @@ public class ApiStepDefs {
         }
 
         // OPT2 - THENPART
-        thenPart.body(path, Matchers.everyItem(Matchers.notNullValue()));
+        thenPart.body(path, everyItem(notNullValue()));
 
     }
 
