@@ -9,7 +9,10 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
+import org.hamcrest.Matchers;
 import org.junit.Assert;
+
+import java.util.List;
 
 public class ApiStepDefs {
 
@@ -41,19 +44,29 @@ public class ApiStepDefs {
     public void status_code_should_be(int expectedStatusCode) {
         // OPT1 - RESPONSE
         Assert.assertEquals(expectedStatusCode, response.statusCode());
-        // OPT2
+        // OPT2 - THENPART
         thenPart.statusCode(200);
 
     }
 
     @Then("response content type is {string}")
     public void response_content_type_is(String expectedContentType) {
-
+        // OPT1 - RESPONSE
+        Assert.assertEquals(expectedContentType, response.contentType());
+        // OPT2 - THENPART
+        thenPart.contentType(expectedContentType);
     }
 
     @Then("Each {string} field should not be null")
     public void each_field_should_not_be_null(String path) {
+        // OPT1 - JSONPATH
+        List<Object> allFields = jp.getList(path);
+        for (Object eachField : allFields) {
+            Assert.assertNotNull(eachField);
+        }
 
+        // OPT2 - THENPART
+        thenPart.body(path, Matchers.everyItem(Matchers.notNullValue()));
 
     }
 

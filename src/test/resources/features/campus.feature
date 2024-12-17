@@ -9,4 +9,3 @@ Feature: As a team_leader,
     Then status code should be 200
     And response content type is "application/json"
     And Each "id" field should not be null
-
