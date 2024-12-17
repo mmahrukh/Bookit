@@ -84,11 +84,12 @@ public class ApiStepDefs {
     @Then("{string} field should not be null")
     public void field_should_not_be_null(String path) {
         String value = jp.getString(path);
-
         Assert.assertNotNull(value);
     }
     @Then("the field value for {string} path should be equal {string}")
-    public void the_field_value_for_path_should_be_equal(String string, String string2) {
+    public void the_field_value_for_path_should_be_equal(String path, String expectedValue) {
+        String actualValue = jp.getString(path);
+        Assert.assertEquals(expectedValue,actualValue);
 
     }
 
