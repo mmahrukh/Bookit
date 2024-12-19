@@ -114,8 +114,21 @@ public class ApiStepDefs {
         }
 
     }
+    /**
+     *  POST /student
+     */
+    @Given("I create a random {string} as a query param")
+    public void i_create_a_random_as_a_query_param(String dataType) {
 
+    }
+    @When("I sent POST request to {string} endpoint")
+    public void i_sent_post_request_to_endpoint(String endpoint) {
 
+    }
+    @Then("the field value for {string} should contains created user fullname")
+    public void the_field_value_for_should_contains_created_user_fullname(String path) {
+
+    }
 
     }
 
