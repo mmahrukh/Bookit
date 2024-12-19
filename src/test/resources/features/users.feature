@@ -9,7 +9,7 @@ Feature: User feature
     And "id" field should not be null
     And the field value for "role" path should be equal "student-team-leader"
 
-  @wip
+
   Scenario Outline: verify information about logged in user "<role>"
     Given I logged in Bookit api as a "<role>"
     And request accept type is "application/json"

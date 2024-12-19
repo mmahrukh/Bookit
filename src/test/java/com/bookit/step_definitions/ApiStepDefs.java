@@ -1,6 +1,7 @@
 package com.bookit.step_definitions;
 
 import com.bookit.utilities.BookitUtils;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -9,6 +10,7 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
+import org.hamcrest.Matchers;
 import org.junit.Assert;
 
 import java.util.List;
@@ -93,6 +95,22 @@ public class ApiStepDefs {
 
     }
 
+    /**
+     *  /students endpoint
+     */
+    @Then("following fields should not be null")
+    public void following_fields_should_not_be_null(List<String> paths ) {
 
+        for (String path : paths) {
 
-}
+            // OPT 1
+            thenPart.body(path, Matchers.notNullValue());
+
+            // OPT 2
+            Assert.assertNotNull(jp.getString(path));
+        }
+
+    }
+
+    }
+
