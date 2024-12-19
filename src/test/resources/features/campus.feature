@@ -9,7 +9,6 @@ Feature: As a team_leader,
     And response content type is "application/json"
     And Each "id" field should not be null
 
-  @wip
   Scenario Outline: verify information about related campuses
     Given I logged in Bookit api as a "team_leader"
     And request accept type is "application/json"
