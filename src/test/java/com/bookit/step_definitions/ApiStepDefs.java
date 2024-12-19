@@ -151,6 +151,13 @@ public class ApiStepDefs {
     @Then("the field value for {string} should contains created user fullname")
     public void the_field_value_for_should_contains_created_user_fullname(String path) {
 
+        // Get value from response
+        String message = jp.getString(path);
+        System.out.println("message = " + message);
+        String fullname=randomDataMap.get("first-name")+" "+randomDataMap.get("last-name");
+        System.out.println("fullname = " + fullname);
+
+        Assert.assertTrue(message.contains(fullname));
     }
 
     }
