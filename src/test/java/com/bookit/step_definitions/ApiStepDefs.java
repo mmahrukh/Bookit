@@ -1,6 +1,7 @@
 package com.bookit.step_definitions;
 
 import com.bookit.utilities.BookitUtils;
+import com.github.javafaker.Team;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -141,7 +142,11 @@ public class ApiStepDefs {
     }
     @When("I sent POST request to {string} endpoint")
     public void i_sent_post_request_to_endpoint(String endpoint) {
+        response = givenPart.when().post(endpoint);
+        jp = response.jsonPath();
+        thenPart = response.then();
 
+        response.prettyPrint();
     }
     @Then("the field value for {string} should contains created user fullname")
     public void the_field_value_for_should_contains_created_user_fullname(String path) {
