@@ -15,6 +15,7 @@ import org.hamcrest.Matchers;
 import org.junit.Assert;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.hamcrest.Matchers.*;
 
@@ -117,8 +118,25 @@ public class ApiStepDefs {
     /**
      *  POST /student
      */
+    Map<String, Object> randomDataMap;
     @Given("I create a random {string} as a query param")
     public void i_create_a_random_as_a_query_param(String dataType) {
+
+        switch(dataType){
+
+            case "student":
+                randomDataMap = BookitUtils.createRandomStudent();
+                break;
+            case "team":
+                // randomDataMap = BookitUtils.createRandomTeam();
+                break;
+            default:
+                throw new RuntimeException("Wrong data type is provide");
+        }
+
+        givenPart.queryParams(randomDataMap);
+
+
 
     }
     @When("I sent POST request to {string} endpoint")
