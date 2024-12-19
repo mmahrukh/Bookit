@@ -51,7 +51,7 @@ public class ApiStepDefs {
         // OPT1 - RESPONSE
         Assert.assertEquals(expectedStatusCode, response.statusCode());
         // OPT2 - THENPART
-        thenPart.statusCode(200);
+        thenPart.statusCode(expectedStatusCode);
 
     }
 
