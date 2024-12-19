@@ -99,5 +99,17 @@ public class BookitUtils {
         return userMap;
     }
 
+    public static Map<String, Object> createRandomTeam() {
+
+        Faker faker = new Faker();
+        Map<String, Object> teamMap = new LinkedHashMap<>();
+
+        // Fill the required fields
+
+        return teamMap;
+    }
+
+
+
 
 }
