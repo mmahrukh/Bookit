@@ -2,6 +2,7 @@ package com.bookit.step_definitions;
 
 import com.bookit.utilities.BookitUtils;
 import io.cucumber.datatable.DataTable;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -75,31 +76,33 @@ public class ApiStepDefs {
 
 
     /**
-     *  Scenario 2
+     * Scenario 2
      */
 
     @Given("Path Param {string} is {string}")
     public void path_param_is(String pathParamKey, String pathParamValue) {
-        givenPart.pathParam(pathParamKey,pathParamValue);
+        givenPart.pathParam(pathParamKey, pathParamValue);
 
     }
+
     @Then("{string} field should not be null")
     public void field_should_not_be_null(String path) {
         String value = jp.getString(path);
         Assert.assertNotNull(value);
     }
+
     @Then("the field value for {string} path should be equal {string}")
     public void the_field_value_for_path_should_be_equal(String path, String expectedValue) {
         String actualValue = jp.getString(path);
-        Assert.assertEquals(expectedValue,actualValue);
+        Assert.assertEquals(expectedValue, actualValue);
 
     }
 
     /**
-     *  /students endpoint
+     * /students endpoint
      */
     @Then("following fields should not be null")
-    public void following_fields_should_not_be_null(List<String> paths ) {
+    public void following_fields_should_not_be_null(List<String> paths) {
 
         for (String path : paths) {
 
@@ -112,5 +115,8 @@ public class ApiStepDefs {
 
     }
 
+
+
     }
+
 
