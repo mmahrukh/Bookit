@@ -1,5 +1,7 @@
 package com.bookit.step_definitions;
 
+import com.bookit.pages.SelfPage;
+import com.bookit.pages.SignInPage;
 import com.bookit.utilities.BookitUtils;
 import com.bookit.utilities.DB_Util;
 import com.github.javafaker.Team;
@@ -204,6 +206,41 @@ public class ApiStepDefs {
         Assert.assertEquals(randomDataMap.get("first-name"),dataMap.get("firstname"));
         Assert.assertEquals(randomDataMap.get("last-name"),dataMap.get("lastname"));
 
+
+
+    }
+
+    @Then("created user should be able to login Bookit UI")
+    public void created_user_should_be_able_to_login_bookit_ui() {
+        SignInPage signInPage=new SignInPage();
+
+        String email = (String)randomDataMap.get("email");
+        System.out.println("email = " + email);
+        String password = (String)randomDataMap.get("password");
+        System.out.println("password = " + password);
+
+        signInPage.login(email,password);
+
+    }
+    @Then("created user name should appear in Self Page")
+    public void created_user_name_should_appear_in_self_page() {
+
+        SelfPage selfPage=new SelfPage();
+
+        selfPage.goToSelf();
+
+        // Assertion
+
+        /*
+
+        -- EXPECTED -> API - send a student body - CREATE
+        -- ACTUAL  --> UI  - created used should be login
+
+         */
+        String UIfullname = selfPage.name.getText();
+        String APIfullname = randomDataMap.get("first-name") + " " + randomDataMap.get("last-name");
+
+        Assert.assertEquals(APIfullname,UIfullname);
 
 
     }

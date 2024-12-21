@@ -38,7 +38,7 @@ Feature: As a teacher
     And the field value for "message" should contains created user fullname
 
 
-  @wip @db
+
   Scenario: create a student and verify user exist in database
     Given I logged in Bookit api as a "teacher"
     And request accept type is "application/json"
@@ -50,3 +50,19 @@ Feature: As a teacher
     And the field value for "entryType" path should be equal "Student"
     And the field value for "message" should contains created user fullname
     And created student should be persist in database
+
+
+  @wip @db @ui
+  Scenario: create a student with three layer
+    Given I logged in Bookit api as a "teacher"
+    And request accept type is "application/json"
+    And I create a random "student" as a query param
+    When I sent POST request to "/api/students/student" endpoint
+    Then status code should be 201
+    And response content type is "application/json"
+    And "entryiId" field should not be null
+    And the field value for "entryType" path should be equal "Student"
+    And the field value for "message" should contains created user fullname
+    And created student should be persist in database
+    And created user should be able to login Bookit UI
+    And created user name should appear in Self Page
