@@ -160,6 +160,12 @@ public class ApiStepDefs {
         Assert.assertTrue(message.contains(fullname));
     }
 
+    @Then("created student should be persist in database")
+    public void created_student_should_be_persist_in_database() {
+
     }
+
+
+}
 
 
