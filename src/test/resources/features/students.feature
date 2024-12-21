@@ -38,7 +38,7 @@ Feature: As a teacher
     And the field value for "message" should contains created user fullname
 
 
-  @wip
+  @wip @db
   Scenario: create a student and verify user exist in database
     Given I logged in Bookit api as a "teacher"
     And request accept type is "application/json"

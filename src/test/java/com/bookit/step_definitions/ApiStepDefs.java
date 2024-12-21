@@ -1,6 +1,7 @@
 package com.bookit.step_definitions;
 
 import com.bookit.utilities.BookitUtils;
+import com.bookit.utilities.DB_Util;
 import com.github.javafaker.Team;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
@@ -162,6 +163,42 @@ public class ApiStepDefs {
 
     @Then("created student should be persist in database")
     public void created_student_should_be_persist_in_database() {
+
+        /*
+
+        EXPECTED --> API
+        ACTUAL   --> DATABASE
+
+        1 - REQUIREMENT VS API || UI || DB
+
+            EXPECTED --> REQUIREMENT (ALWAYS)
+            ACTUAL   --> API || UI || DB
+
+        2 - UI VS DATABASE
+
+            -- CREATE - UPDATE - DELETE --> ADDED NEW BOOK FROM UI
+                EXPECTED --> UI
+                ACTUAL   --> DATABASE
+
+            -- GET --> VERIFY DASHBOARD STATS VS DATABASE
+                EXPECTED --> DATABASE
+                ACTUAL   --> UI
+         */
+
+        // GET DATA FROM DATABASE
+        // GET ID
+        String id = jp.getString("entryiId");
+        System.out.println("id = " + id);
+
+        // Write a query
+        String query ="select firstname,lastname from users where id="+id;
+        DB_Util.runQuery(query);
+        Map<String, String> dataMap = DB_Util.getRowMap(1);
+        System.out.println("dataMap = " + dataMap);
+
+        // GET DATA FROM API
+
+
 
     }
 
