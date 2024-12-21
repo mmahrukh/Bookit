@@ -197,6 +197,12 @@ public class ApiStepDefs {
         System.out.println("dataMap = " + dataMap);
 
         // GET DATA FROM API
+        System.out.println("randomDataMap = " + randomDataMap);
+
+
+        // ASSERTIONS
+        Assert.assertEquals(randomDataMap.get("first-name"),dataMap.get("firstname"));
+        Assert.assertEquals(randomDataMap.get("last-name"),dataMap.get("lastname"));
 
 
 
